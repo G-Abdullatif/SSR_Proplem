@@ -1,0 +1,56 @@
+// ================================ Bootstrap CSS ================================ //
+@import "../../../assets/css/bootstrap.min.css" ;
+// ================================ Meanmenu CSS ================================ //
+@import "../../../assets/css/meanmenu.css" ;
+// ================================ Boxicons CSS ================================ //
+@import "../../../assets/css/boxicons.min.css" ;
+// ================================ Fontawesome CSS ================================ //
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+// ================================ Flaticon CSS ================================ //
+@import "../../../assets/fonts/flaticon.css" ;
+// ================================ Owl Carousel CSS ================================ //
+@import "../../../assets/css/owl.carousel.min.css" ;
+@import "../../../assets/css/owl.theme.default.min.css" ;
+// ================================ Odometer CSS-- ;
+@import "../../../assets/css/odometer.min.css" ;
+// ================================ Magnific Popup CSS ================================ //
+@import "../../../assets/css/magnific-popup.min.css" ;
+// ================================ Style CSS ================================ //
+@import "../../../assets/css/style.css" ;
+// ================================ Dark CSS ================================ //
+@import "../../../assets/css/dark.css" ;
+// ================================ Responsive CSS ================================ //
+@import "../../../assets/css/responsive.css" ;
+// ================================ Leaflet CSS ================================ //
+@import "../../../../node_modules/leaflet/dist/leaflet.css";
+// ================================ Animate CSS ================================ //
+@import '~animate.css/animate.css';
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+    background-color: var(--buttons-color);
+}
+p, label, a{
+  font-size: 16px
+}
+jjva-ngx-whatsapp-button a {
+    bottom: 20px !important;
+    left: 20px;
+    right:unset !important;
+    z-index:1000;
+
+}
+jjva-ngx-whatsapp-button a div{
+    margin-top:-7% !important;
+}
+
+.desc-ellipsis {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+@media(max-width:991px){
+  p, label, a {
+    font-size: 14px
+  }
+}

@@ -1,0 +1,36 @@
+.map-container {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+}
+
+.map-frame {
+    border: 2px solid #cccccc;
+    border-radius: 5px;
+    height: 100%;
+}
+
+#map {
+    z-index: 1 ;
+    height: 100%;
+}
+
+::ng-deep {
+  .popup-item{
+      margin:5px 0 ;
+  }
+  .popup-text {
+    display: inline;
+    padding-left:5px;
+    font-size: 14px;
+  }
+
+  .leaflet-popup-close-button {
+    padding-right: 15px;
+    padding-top: 4px;
+    font-size: 20px !important;
+  }
+}

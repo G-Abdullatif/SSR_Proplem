@@ -1,0 +1,38 @@
+.home {
+    height: 300px;
+    background-size: cover;
+    position: relative;
+}
+.page-content {
+    padding: 1% 10%;
+}
+.home-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    width: 52%;
+}
+
+.home .title {
+    color: #Fff;
+    text-transform: uppercase;
+    font-size: 3.5rem;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(190 190 190 / 37%);
+}
+.service-item {
+  height: 300px;
+}
+
+.desc-ellipsis {
+  -webkit-line-clamp: 3;
+}

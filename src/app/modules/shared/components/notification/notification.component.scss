@@ -1,0 +1,39 @@
+.notifications__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  
+    transition: all .3s ease-in;
+    cursor: pointer;
+  }
+  
+  .notifications__item__avatar {
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    margin-right: 20px;
+  
+    border-radius: 50%;
+  }
+  
+  .notifications__item__avatar img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .notifications__item__content { width: calc( 100% - 105px ); }
+  .notifications__item__title,
+  .notifications__item__message { display: block; }
+  
+  .notifications__item__title {
+    letter-spacing: 2px;
+    font-family: 'atvice', sans-serif;
+    font-size: 17px;
+  }
+  
+  .notifications__item__message {
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    color: #929292;
+  }

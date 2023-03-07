@@ -1,0 +1,102 @@
+<!-- Header top -->
+<div class="header-top-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="header-top-item">
+          <div class="header-left">
+            <ul>
+              <li>
+                <i class="flaticon-factory"></i>
+                <a href="#">
+                  {{"RoboticsForBetterWorld" | translate}}
+                </a>
+              </li>
+              <li>
+                <i class="flaticon-mail"></i>
+                <a href="mailto:hello@tuliptechs.com">hello@tuliptechs.com</a>
+              </li>
+              <!--<li>
+                <i class="flaticon-phone"></i>
+                <a href="tel:+905378538593">
+                  +90 537-853-85-93
+                </a>
+              </li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="header-top-item">
+          <div class="header-right">
+            <ul>
+              <!--<li>
+                <a href="#" target="_blank">
+                  <i class='bx bxl-facebook'></i>
+                </a>
+              </li>-->
+              <li>
+                <a href="https://twitter.com/tuliptechs" target="_blank">
+                  <i class='bx bxl-twitter'></i>
+                </a>
+              </li>
+              <!--<li>
+                <a href="#" target="_blank">
+                  <i class='bx bxl-pinterest-alt'></i>
+                </a>
+              </li>-->
+              <li>
+                <a href="https://www.linkedin.com/company/tuliptechs/" target="_blank">
+                  <i class='bx bxl-linkedin'></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Header top -->
+<!-- Start Navbar Area -->
+<div class="navbar-area sticky-top">
+  <!-- Mobile Device -->
+  <div class="mobile-nav">
+    <a href="index.html" class="logo">
+      <img src="./assets/img/logo-three.png" alt="Logo">
+    </a>
+  </div>
+
+  <!-- Desktop Device -->
+  <div class="main-nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-light">
+        <a class="navbar-brand" href="index.html">
+          <img src="./assets/img/logo.png" class="main-logo" alt="Logo">
+          <img src="./assets/img/logo-three.png" class="white-logo" alt="Logo">
+        </a>
+        <button class="navbar-toggler mx-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon custom-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+           
+            <!-- Dynamic Menu Items -->
+            <li class="nav-item" *ngFor="let item of parents()">
+              <ng-container *ngIf="doesHaveChildren(item) > 0; else NoChildren">
+                <a href="javascript:void(0);" [routerLink]="'/home/' + item.urlName" [class.disabled]="item.urlName == null ? true : false" (click)="getPage(item.urlName)" class="nav-link dropdown-toggle">{{ item.name }} <i class='bx bx-chevron-down'></i></a>
+                <ul class="dropdown-menu" id="parent{{ item.id }}">
+                  {{getSubMenu(item)}}
+                </ul>
+              </ng-container>
+              <ng-template #NoChildren>
+                <a href="javascript:void(0);" [routerLink]="'/home/' + item.urlName" class="nav-link" (click)="getPage(item.urlName)">{{ item.name }}</a>
+              </ng-template>
+            </li>
+            <!-- /Dynamic Menu Items -->
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

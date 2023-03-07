@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+Theme: TulipTechs -
+Author: TulipTechs
+Website: https://tuliptechsui.azurewebsites.net/en/home/
+Contact: support@tuliptechsui.azurewebsites.net
+Follow: www.twitter.com/TulipTechs
+Dribbble: www.dribbble.com/TulipTechs
+Like: www.facebook.com/TulipTechs
+-->
+<html lang="en">
+<!--Use below html tag for RTL version-->
+<!-- <html lang="en" dir="rtl" direction="rtl" style="direction: rtl"> -->
+<head>
+    <meta charset="utf-8" />
+    <title >Tulip Technologies</title>
+    <meta name="title" content="" />
+    <meta name="description" content="" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+    <link rel="manifest" crossorigin="use-credentials" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#1976d2" />
+</head>
+
+<body *ngIf="language == 'AR'" style="overflow-x: hidden" id="kt_body" class="mat-typography">
+    <app-root></app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+
+<body *ngIf="language != 'AR'" id="kt_body" class="mat-typography">
+    <app-root></app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+</html>

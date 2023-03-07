@@ -1,0 +1,10 @@
+<div class="notifications__item" [routerLink]="[notification.click_action]">
+  <div class="notifications__item__avatar">
+    <img src="" [default]="defaultImage"/>
+  </div>
+
+  <div class="notifications__item__content">
+    <span class="notifications__item__title">{{notification.title}}</span>
+    <span class="notifications__item__message">{{notification.message || notification.body}}</span>
+  </div>
+</div>

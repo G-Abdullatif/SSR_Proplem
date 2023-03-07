@@ -1,0 +1,90 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header">
+      <div class="card-title">
+        <h3 class="card-label">{{"LocalizationResources" | translate}}</h3>
+      </div>
+      <div class="card-toolbar d-flex">
+        <button type="button" class="btn btn-primary" (click)="create()">{{"Add" | translate}}</button>
+      </div>
+    </div>
+    <div class="card-body">
+    <!-- begin: Filtration form -->
+    <div class="form form-label-right">
+      <div class="form-group row">
+        <div class="col-lg-2" [formGroup]="searchGroup">
+          <input type="text"
+            class="form-control" 
+            name="searchText" 
+            [placeholder]="'Search' | translate"
+            formControlName="searchText"
+          />
+
+        </div>                
+      </div>
+    </div>
+    <!-- end: Filtration form -->
+      <!-- begin:Table -->
+      <div class="table-responsive angular-bootstrap-table">
+        <table class="table table-head-custom table-vertical-center overflow-hidden">
+          <thead>
+            <th>
+              <app-sort-icon column="Id" [activeColumn]="sorting.column" [activeDirection]="sorting.direction"
+              (sort)="sort($event)"></app-sort-icon>
+            </th>
+            <th>{{"Key" | translate}}
+              <app-sort-icon column="Key" [activeColumn]="sorting.column" [activeDirection]="sorting.direction"
+              (sort)="sort($event)"></app-sort-icon>
+            </th>
+            <th>{{"Value" | translate}}
+              <app-sort-icon column="Value" [activeColumn]="sorting.column" [activeDirection]="sorting.direction"
+              (sort)="sort($event)"></app-sort-icon>
+            </th>
+            <th>{{"Active" | translate}}</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let localizationResource of localizationResourcesService.localizationResources; let i = index">                    
+              <td>{{ localizationResource?.id }}</td>
+              <td>{{ localizationResource?.key}}</td>
+              <td>{{ localizationResource?.value }}</td>
+              <td>
+                <span class="switch switch-icon">
+                  <label>
+                    <input
+                      class="form-control form-control-lg form-control-solid"
+                      type="checkbox"
+                      name="isActive"
+                      [checked] = "localizationResource?.isActive"
+                      name="builder[header][self][fixed][desktop]"
+                      [attr.value]="localizationResource?.isActive"
+                      (change)="onActiveClicked($event, localizationResource?.id)"
+                    />
+                    <span></span>
+                  </label>
+                </span>
+              </td>
+              <td>
+                <!-- edit -->
+                <a [title]="'Edit'|translate" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" (click)="edit(localizationResource?.id)">
+                  <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" cacheSVG="true"
+                    class="svg-icon svg-icon-md svg-icon-primary">
+                  </span>
+                </a>
+                <!-- delete -->
+                <!-- <a title="Delete customer" class="btn btn-icon btn-light btn-hover-danger btn-sm">
+                  <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'" cacheSVG="true"
+                    class="svg-icon svg-icon-md svg-icon-danger">
+                  </span>
+                </a> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end: Table -->
+      <app-paginator class="d-flex justify-content-between align-items-center flex-wrap"
+      [paginator]="paginator"
+      [isLoading]="isLoading" (paginate)="paginate($event)"
+    ></app-paginator>
+    </div>
+  </div>

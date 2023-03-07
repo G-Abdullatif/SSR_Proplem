@@ -1,0 +1,72 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <div class="modal-title h4" id="example-modal-sizes-title-lg">
+            <ng-container >
+                {{"ProfilePicture" | translate}}
+            </ng-container>
+        </div>
+    </div>
+    <div class="overlay overlay-block cursor-default modal-body">
+        <ng-container>
+
+            <!--<input type="file" (change)="fileChangeEvent($event)" />-->
+            <div class="row">
+                <div class="col-12 text-center">
+                <h2>{{"ControlTools"| translate}}</h2>
+                <button (click)="rotateLeft()" class="btn btn-primary">
+                    <img src="/assets/media/svg/icons/Navigation/Left 3.svg" />
+                </button>
+                <button (click)="rotateRight()" class="btn btn-primary">
+                    <img src="/assets/media/svg/icons/Navigation/Right 3.svg" />
+                </button>
+                    <button (click)="flipHorizontal()" class="btn btn-primary">
+                        <img src="/assets/media/svg/icons/Design/Flip-horizontal.svg" />
+                    </button>
+                    <button (click)="flipVertical()" class="btn btn-primary">
+                        <img src="/assets/media/svg/icons/Design/Flip-vertical.svg" />
+                    </button>
+                    <!--<button (click)="toggleContainWithinAspectRatio()" class="btn btn-primary">
+                    </button>-->
+                    <button (click)="resetImage()" class="btn btn-primary">
+                        <img src="/assets/media/svg/icons/Map/Position.svg" />
+                    </button>
+                    <button (click)="zoomIn()" class="btn btn-primary">
+                        <img src="/assets/media/svg/icons/Design/ZoomPlus.svg" />
+                    </button>
+                    <button (click)="zoomOut()" class="btn btn-primary">
+                        <img src="/assets/media/svg/icons/Design/ZoomMinus.svg" />
+                    </button>
+                    <button (click)="freeCrop()" class="btn btn-primary">
+                        <img src="/assets/media/svg/icons/Design/Crop.svg" />
+                    </button>
+                    <!--<input [(ngModel)]="rotation" (keyup)="updateRotation()" class="form-control rotate-input" type="number" placeholder="Rotation">-->
+                </div>
+            </div>
+            <div>
+                <image-cropper [imageChangedEvent]="imageChangedEvent"
+                               [maintainAspectRatio]="maintainAspectRatio"
+                               [containWithinAspectRatio]="containWithinAspectRatio"
+                               [aspectRatio]="aspectRatio"
+                               [cropperMinWidth]="128"
+                               [onlyScaleDown]="true"
+                               [roundCropper]="false"
+                               [canvasRotation]="canvasRotation"
+                               [transform]="transform"
+                               [alignImage]="'left'"
+                               [style.display]="showCropper ? null : 'none'"
+                               format="png"
+                               (imageCropped)="imageCropped($event)"
+                               (imageLoaded)="imageLoaded()"
+                               (cropperReady)="cropperReady($event)"
+                               (loadImageFailed)="loadImageFailed()"></image-cropper>
+            </div>
+        </ng-container>
+    </div>
+    <div class="modal-footer">
+       
+        <button type="button" class="btn btn-light btn-elevate mr-2" (click)="modal.dismiss('cancel the operation')">{{"Cancel" | translate}}</button>
+        <ng-container>
+            <button type="submit" class="btn btn-primary btn-elevate" (click)="save()">{{"Save" | translate}}</button>
+        </ng-container>
+    </div>
+</div>

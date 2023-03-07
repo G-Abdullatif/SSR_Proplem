@@ -1,0 +1,110 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-title h4" id="example-modal-sizes-title-lg">
+      <ng-container *ngIf="language">
+        <ng-container *ngIf="id">{{"Edit" | translate}}</ng-container>
+        <ng-container *ngIf="!id">{{"Create" | translate}}</ng-container>
+        {{"Language" | translate}}
+        <ng-container *ngIf="id">'{{language.name}}'</ng-container>
+      </ng-container>
+    </div>
+  </div>
+  <div class="overlay overlay-block cursor-default modal-body">
+    <ng-container *ngIf="isLoading$ | async">
+      <div class="overlay-layer bg-transparent">
+        <div class="spinner spinner-lg spinner-success"></div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="language">
+      <form action="#" class="form form-label-right" [formGroup]="formGroup" *ngIf="formGroup">
+        <div class="form-group row">
+          <div class="col-4">
+            <div class="input-group mb-3">
+              <input matInput type="text" formControlName="name" class="form-control form-control-lg form-control-solid" [placeholder]="'Name' | translate">
+            </div>
+            <div class="valid-feedback d-block mb-3" *ngIf="formGroup.controls['name'].valid">{{"Perfect" | translate}}</div>
+            <div class="invalid-feedback d-block mb-3" *ngIf="formGroup.controls['name'].invalid && formGroup.controls['name'].touched">{{"Error_Required" | translate}}</div>
+          </div>
+          <div class="col-4">
+            <div class="input-group mb-3">
+              <input matInput type="text" formControlName="code" class="form-control form-control-lg form-control-solid" [placeholder]="'Code' | translate">
+            </div>
+            <div class="valid-feedback d-block mb-3" *ngIf="formGroup.controls['code'].valid">{{"Perfect" | translate}}</div>
+            <div class="invalid-feedback d-block mb-3" *ngIf="formGroup.controls['code'].invalid && formGroup.controls['code'].touched">{{"Error_Required" | translate}}</div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-4">
+            <div class="input-group mb-3">
+              <input matInput type="number" formControlName="sort" class="form-control form-control-lg form-control-solid" [placeholder]="'EnterSort'|translate">
+            </div>
+            <div class="valid-feedback d-block mb-3" *ngIf="formGroup.controls['sort'].valid">{{"Perfect" | translate}}</div>
+            <div class="invalid-feedback d-block mb-3" *ngIf="formGroup.controls['sort'].invalid && formGroup.controls['sort'].touched">{{"Error_Required" | translate}}</div>
+          </div>
+          <div class="col-lg-4">
+            <div class="d-flex">
+              <span class="switch switch-icon m-1">
+                <div class="d-flex justify-content-start">
+                    <label>
+                      <input
+                        class="form-control form-control-lg form-control-solid"
+                        type="checkbox"
+                        name="isActive"
+                        formControlName="isActive"
+                        name="builder[header][self][fixed][desktop]"
+                        [value]="language.isActive"
+                      />
+                      <span></span>
+                    </label>
+                    <div class="m-auto">
+                      <span class="mx-4">{{"Active" | translate}}</span>
+                    </div>
+                </div>
+              </span>
+              <span class="switch switch-icon m-1">
+                <div class="d-flex justify-content-start">
+                    <label>
+                      <input
+                        class="form-control form-control-lg form-control-solid"
+                        type="checkbox"
+                        name="isRTL"
+                        formControlName="isRTL"
+                        name="builder[header][self][fixed][desktop]"
+                        [value]="language.isRTL"
+                      />
+                      <span></span>
+                    </label>
+                    <div class="m-auto">
+                      <span class="mx-4">RTL</span>
+                    </div>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-4 uploader" appDragAndDrop (fileDropped)="onFileChange($event)">
+            <input id="image-upload" type="file" name="imageUpload" accept="image/*" (change)="onFileChange($event.target.files)"/>
+            <label for="image-upload" id="image-drag" class="d-flex">
+              <div id="start" class="start">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                <div>{{"UploadImage_Des" | translate}}</div>
+              </div>
+              <img #imageFile id="file-image" [src]="imageSrc" alt="Preview" class="img-thumbnail file-image" [default]="defaultImage"/>
+              <div id="imageResponse" class="hidden response">
+                <div id="imageMessages" class="messages"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </form>
+    </ng-container>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light btn-elevate mr-2" (click)="modal.dismiss('cancel the operation')">{{"Cancel" | translate}}</button>
+    <ng-container *ngIf="language">
+
+      <button type="submit" class="btn btn-primary btn-elevate" (click)="save()">{{"Save" | translate}}</button>
+    </ng-container>
+  </div>
+</div>

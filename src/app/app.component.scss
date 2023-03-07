@@ -1,0 +1,16 @@
+:host {
+	height: 100%;
+	margin: 0;
+}
+::ng-deep{
+	body.swal2-height-auto{
+		height: 100% !important;
+	}
+}
+
+app-splash-screen{
+	z-index: 9999;
+}
+app-incoming-call{
+	z-index: 10000;
+}

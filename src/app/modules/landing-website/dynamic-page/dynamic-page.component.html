@@ -1,0 +1,28 @@
+<div *ngIf="page">
+    <!-- Page Title -->
+    <app-page-title [title]="page.title" [image]="page.image" [folder]="page.entityType == 1 ? 'page' : 'pageCategory'"></app-page-title>
+    <!-- End Page Title -->
+
+    <div *ngIf="page.entityType == 1" class="page-content" [innerHtml]="content"></div>
+
+    <!-- Service -->
+    <section *ngIf="page.entityType == 2" class="service-area-two service-area-three pt-100 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-4" *ngFor="let item of pageService.pages">
+                    <div class="service-item" [style.background-image]="'url(' + environment.apiUrl + 'img/Page/natural/' + item.mainImage + ')'">
+                      <div class="img-icon" >
+                        <img class="p-3 mb-3" style="opacity:1;" [src]="environment.apiUrl + 'img/Page/natural/' + item.icon" [default]="defaultImage" />
+                      </div>
+                        <h3>
+                            <a (click)="getPage(item.urlName)" [routerLink]="'/home/' + item.urlName">{{item.title}}</a>
+                        </h3>
+                        <p class="desc-ellipsis" [title]="item.shortDescription">{{item.shortDescription}}</p>
+                        <a (click)="getPage(item.urlName)" class="service-link" [routerLink]="'/home/' + item.urlName">{{"ReadMore" | translate}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Service -->
+</div>

@@ -1,0 +1,80 @@
+.main-logo, .logo {
+  max-width: 200px !important;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.side-nav .dropdown-item {
+  font-size: 14px
+}
+
+.side-nav .dropdown-toggle {
+  background: 0;
+  border: 0;
+  border: 2px solid;
+  font-size: 16px;
+  padding: 7px 20px;
+}
+
+.dropdown-toggle:hover ~ .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu:hover {
+  display: block;
+}
+
+.languages {
+  position: absolute !important;
+  right: 0
+}
+
+.languages .dropdown-menu {
+  width: 140px !important;
+}
+
+.languages .flag{
+    width:20px;
+    margin:0 5px;
+}
+@media (max-width:991px) {
+  .mean-menu {
+    background: #099;
+    padding: 15px 15px 0 15px;
+  }
+
+  .main-nav {
+    padding: 0;
+    background: #fff;
+  }
+
+  .navbar-brand {
+    padding: 21px 10px
+  }
+
+  .main-nav, .navbar {
+    padding-bottom: 0;
+  }
+
+  .container {
+    margin: 0;
+    padding: 0;
+    max-width: unset;
+  }
+
+  .navbar-toggler-icon {
+    font-size: 20px;
+  }
+
+  .languages .dropdown-menu {
+    right: auto !important
+  }
+
+  .languages {
+    position: relative !important;
+    right: auto
+  }
+}

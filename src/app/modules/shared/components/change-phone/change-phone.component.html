@@ -1,0 +1,114 @@
+<ng-container *ngIf="user">
+    <div class="card card-custom" [formGroup]="formGroup">
+        <!-- begin::Loading -->
+        <ng-container *ngIf="isLoading$ | async">
+            <div class="progress progress-modal">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </ng-container>
+        <!-- end::Loading -->
+        <!--begin::Header-->
+        <div class="card-header py-3">
+            <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bolder text-dark">{{ "ChangePhoneNumber" | translate }}</h3>
+                <span class="text-muted font-weight-bold font-size-sm mt-1">{{"ChangeYourAccountPhoneNumber"|translate}}</span>
+            </div>
+            <div class="card-toolbar" *ngIf="!isFormSubmitted">
+                <button type="submit" [disabled]="formGroup.invalid" class="btn btn-success mr-2" (click)="save()">{{"SaveChanges"|translate}}</button>
+                <button type="reset" class="btn btn-secondary" (click)="cancel()">{{ "Cancel" | translate }}</button>
+            </div>
+        </div>
+        <!--end::Header-->
+        <!--begin::Form-->
+        <div class="form">
+            <div class="card-body" *ngIf="!isFormSubmitted; else verifyResetCode">
+                <!--begin::Alert-->
+                <div class="alert alert-custom alert-light-danger fade show mb-10 d-none" role="alert">
+                    <div class="alert-icon">
+                        <span class="svg-icon svg-icon-3x svg-icon-danger" [inlineSVG]="'./assets/media/svg/icons/Code/Info-circle.svg'" cacheSVG="true"> </span>
+                    </div>
+                    <div class="alert-text font-weight-bold">
+                        Configure user phone numbers to expire periodically. Users will need warning that their phone numbers are going to expire, <br />or they might inadvertently get locked out of the system!
+                    </div>
+                    <div class="alert-close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="ki ki-close"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <!--end::Alert-->
+                <!--begin::Form group-->
+                <div class="form-group row" [ngClass]="{ RTL: language.isRTL }">
+                    <label class="col-xl-3 col-lg-3 col-form-label text-alert">{{"Phone" | translate}}</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <input #phone
+                               class="form-control form-control-solid h-auto py-3 px-6 rounded-lg phone"
+                               type="tel"
+                               name="phoneNumber"
+                               formControlName="phoneNumber"
+                               autocomplete="off"
+                               [class.is-invalid]="isControlInvalid('phoneNumber')"
+                               [class.is-valid]="isControlValid('phoneNumber')" />
+                        <ng-container [ngTemplateOutlet]="formError"
+                                      [ngTemplateOutletContext]="{
+                    validation: 'required',
+                    message: 'Phone is required',
+                    control: formGroup?.controls['phoneNumber']
+                  }"></ng-container>
+                        <ng-container [ngTemplateOutlet]="formError"
+                                      [ngTemplateOutletContext]="{
+                    validation: 'phoneValidator',
+                    message: formGroup?.controls['phoneNumber'].getError('phoneValidator'),
+                    control: formGroup?.controls['phoneNumber']
+                  }"></ng-container>
+                    </div>
+                </div>
+                <!--end::Form group-->
+            </div>
+            <ng-template #verifyResetCode>
+                <div class="card-body">
+                    <div class="form-group row justify-content-center">
+                        <div class="col-lg-9 col-xl-6">
+                            <div class="card card-custom bgi-no-repeat gutter-b"
+                                 style="height: 175px; background-color: #4ab58e; background-position: calc(100% + 1rem) bottom; background-size: 25% auto; background-image: url(assets/media/svg/humans/custom-1.svg)">
+                                <!--begin::Body-->
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="py-2">
+                                        <h3 class="text-white font-weight-bolder mb-3">{{"PhoneNumberIsCorrect" | translate}}!</h3>
+                                        <p class="text-white font-size-lg">
+                                            {{"MessageWithRecoveryInstruction" | translate}}<br />
+                                            {{"HasBeenSent" | translate}}<br />
+                                        </p>
+                                        <a (click)="resendCode()" class="swal2-confirm btn font-weight-bold btn-light-primary"> {{"ResendTheCode" | translate}}! </a>
+                                    </div>
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <code-input [isCodeHidden]="false" [codeLength]="6" (codeCompleted)="onCodeCompleted($event)"> </code-input>
+
+                            <!-- begin::Alert error-->
+                            <ng-container *ngIf="errorState">
+                                <div class="my-10 alert alert-custom alert-light-danger alert-dismissible">
+                                    <div class="alert-text">{{"TheVerifyCodeIsIncorrect" | translate}}</div>
+                                </div>
+                            </ng-container>
+                            <!-- end::Alert error-->
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <!--end::Form-->
+    </div>
+</ng-container>
+<ng-template #formError let-control="control" let-message="message" let-validation="validation">
+    <ng-container *ngIf="control?.hasError(validation) && (control.dirty || control.touched)">
+        <div class="fv-plugins-message-container">
+            <div class="fv-help-block">
+                {{ message }}
+            </div>
+        </div>
+    </ng-container>
+</ng-template>

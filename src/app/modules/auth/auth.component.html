@@ -1,0 +1,113 @@
+<div class="d-flex flex-column flex-root h-100" id="kt_login_wrapper">
+  <!--begin::Login-->
+  <div
+    class="
+      login login-1 login-signin-on
+      d-flex
+      flex-column flex-lg-row flex-column-fluid
+      bg-white
+    "
+    id="kt_login"
+  >
+    <!--begin::Aside-->
+    <div
+      class="login-aside d-flex flex-column flex-row-auto"
+      [style]="leftSideBg()"
+    >
+      <!--begin::Aside Top-->
+      <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
+        <!--begin::Aside header-->
+        <a
+          routerLink="/home"
+          class="text-center mb-10 cursor-pointer"
+          style="height: 75px"
+        >
+          <img [src]="logoSrc" class="max-h-70px" alt="" [style]="logoSize()" />
+        </a>
+        <!--end::Aside header-->
+
+        <!--begin::Aside title-->
+        <h3
+          class="
+            font-weight-bolder
+            text-center
+            font-size-h4 font-size-h1-lg
+            px-25
+          "
+          style="color: #986923"
+        >
+          {{ "Login_Slogan_Description" | translate }}
+        </h3>
+        <!--end::Aside title-->
+      </div>
+      <!--end::Aside Top-->
+
+      <!--begin::Aside Bottom-->
+      <div
+        class="
+          aside-img
+          d-flex
+          flex-row-fluid
+          bgi-no-repeat bgi-position-y-bottom bgi-position-x-center
+        "
+        [style]="leftSideImage()"
+      ></div>
+      <!--end::Aside Bottom-->
+    </div>
+    <!--begin::Aside-->
+
+    <!--begin::Content-->
+    <div
+      class="
+        login-content
+        flex-row-fluid
+        d-flex
+        flex-column
+        justify-content-center
+        position-relative
+        overflow-hidden
+        p-0
+        mx-auto
+      "
+    >
+      <!--begin::Content body-->
+      <div class="d-flex flex-column-fluid flex-center">
+        <router-outlet></router-outlet>
+      </div>
+      <!--end::Content body-->
+
+      <!--begin::Content footer-->
+      <div
+        class="
+          d-flex
+          justify-content-lg-start justify-content-center
+          align-items-end
+          py-7 py-lg-0
+          my-10
+          ml-20
+        "
+      >
+        <a
+          [routerLink]="'/home/terms-and-conditions'"
+          class="text-primary font-weight-bolder font-size-h5"
+          >{{ "Terms" | translate }}</a
+        >
+        <!--<a href="#" class="text-primary ml-10 font-weight-bolder font-size-h5">{{"Plans" | translate}}</a>-->
+        <a
+          [routerLink]="'/home/contact'"
+          class="text-primary ml-10 font-weight-bolder font-size-h5"
+          >{{ "ContactUs" | translate }}</a
+        >
+        <a
+          [routerLink]="'/home/policy'"
+          (click)="openDialog()"
+          class="text-primary ml-10 font-weight-bolder font-size-h5"
+          >{{ "PrivacyPolicy" | translate }}</a
+        >
+      </div>
+      <!--end::Content footer-->
+    </div>
+    <!--end::Content-->
+  </div>
+  <!--end::Login-->
+</div>

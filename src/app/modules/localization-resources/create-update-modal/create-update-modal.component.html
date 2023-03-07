@@ -1,0 +1,141 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-title h4" id="example-modal-sizes-title-lg">
+      <ng-container *ngIf="localizationResource">
+        <ng-container *ngIf="id">{{ "Edit" | translate }}</ng-container>
+        <ng-container *ngIf="!id">{{ "Create" | translate }}</ng-container>
+        {{ "LocalizationResource" | translate }}
+        <ng-container *ngIf="id"
+          >'{{ localizationResource.value }}'</ng-container
+        >
+      </ng-container>
+    </div>
+  </div>
+  <div class="overlay overlay-block cursor-default modal-body">
+    <ng-container *ngIf="isLoading$ | async">
+      <div class="overlay-layer bg-transparent">
+        <div class="spinner spinner-lg spinner-success"></div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="localizationResource">
+      <form
+        action="#"
+        class="form form-label-right"
+        [formGroup]="formGroup"
+        *ngIf="formGroup"
+      >
+        <div class="form-group row" *ngIf="!environment.production || !id">
+          <div class="col-4">
+            <label class="form-label">{{ "EnterKey" | translate }}</label>
+            <input
+              type="text"
+              formControlName="key"
+              [class.is-invalid]="
+                (isControlInvalid('key') && isControlTouched('key')) ||
+                (isControlInvalid('key') && formSubmitAttempt)
+              "
+              [class.is-valid]="isControlValid('key')"
+              required
+              class="form-control form-control-lg form-control-solid"
+            />
+            <div
+              class="valid-feedback d-block mb-3"
+              *ngIf="isControlValid('key')"
+            >
+              {{ "Perfect" | translate }}
+            </div>
+            <div
+              class="invalid-feedback d-block mb-3"
+              *ngIf="isControlInvalid('key') && isControlTouched('key')"
+            >
+              {{ "Error_Required" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group row" formArrayName="languageWordTranslation">
+          <div class="col-lg-12" *ngFor="let lang of languages; let i = index">
+            <div [formGroupName]="i">
+              <label class="form-label">{{ "EnterValue" | translate }}</label>
+              <div class="input-group mb-3">
+                <textarea
+                  type="text"
+                  class="form-control form-control-lg form-control-solid"
+                  [class.is-invalid]="
+                    (isControlInvalid('languageWordTranslation', i) &&
+                      isControlTouched('languageWordTranslation', i)) ||
+                    (isControlUnTouched('languageWordTranslation', i) &&
+                      formSubmitAttempt)
+                  "
+                  [class.is-valid]="
+                    isControlValid('languageWordTranslation', i)
+                  "
+                  formControlName="value"
+                  rows="2"
+                  cols="50"
+                ></textarea>
+                <div class="input-group-append">
+                  <span class="input-group-text" [id]="'basic-addon-' + i">{{
+                    lang.code
+                  }}</span>
+                </div>
+              </div>
+              <div
+                class="valid-feedback d-block mb-3"
+                *ngIf="isControlValid('languageWordTranslation', i)"
+              >
+                {{ "Perfect" | translate }}
+              </div>
+              <div
+                class="invalid-feedback d-block mb-3"
+                *ngIf="
+                  (isControlInvalid('languageWordTranslation', i) &&
+                    isControlTouched('languageWordTranslation', i)) ||
+                  (isControlUnTouched('languageWordTranslation', i) &&
+                    formSubmitAttempt)
+                "
+              >
+                {{ "Error_Required" | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-4">
+            <label class="form-label">{{ "Active" | translate }}</label>
+            <span class="switch switch-icon">
+              <label>
+                <input
+                  class="form-control form-control-lg form-control-solid"
+                  type="checkbox"
+                  name="isActive"
+                  formControlName="isActive"
+                  name="builder[header][self][fixed][desktop]"
+                  [value]="localizationResource.isActive"
+                />
+                <span></span>
+              </label>
+            </span>
+          </div>
+        </div>
+      </form>
+    </ng-container>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light btn-elevate mr-2"
+      (click)="modal.dismiss('cancel the operation')"
+    >
+      {{ "Cancel" | translate }}
+    </button>
+    <ng-container *ngIf="localizationResource">
+      <button
+        type="submit"
+        class="btn btn-primary btn-elevate"
+        (click)="save()"
+      >
+        {{ "Save" | translate }}
+      </button>
+    </ng-container>
+  </div>
+</div>

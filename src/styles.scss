@@ -1,0 +1,230 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700");
+// Global vendors
+@import "~bootstrap/dist/css/bootstrap.css";
+// => Material
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+@import "~highlight.js/styles/googlecode.css";
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
+
+// Global fonts
+@import "~socicon/css/socicon.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "./assets/plugins/teleMaxSAS-icons/font/ki.css";
+// ================================ Boxicons CSS ================================ //
+@import "./assets/css/boxicons.min.css";
+// ================================ Flaticon CSS ================================ //
+@import "./assets/fonts/flaticon.css";
+// ================================ Animate CSS ================================ //
+@import '~animate.css/animate.css';
+
+// TulipTechs styles (replace these path when using RTL css below)
+//@import "./assets/sass/style.angular.scss";
+
+// For RTL
+//@import "./assets/sass/style.angular.rtl.css";
+
+// Default Layout themes
+@import "./assets/sass/themes/layout/header/base/light.scss";
+@import "./assets/sass/themes/layout/header/menu/light.scss";
+@import "./assets/sass/themes/layout/brand/dark.scss";
+@import "./assets/sass/themes/layout/aside/dark.scss";
+
+// Header themes
+// .header-base-light {
+//     @import "./assets/sass/themes/layout/header/base/light.scss";
+// }
+
+// .header-base-dark {
+//     @import "./assets/sass/themes/layout/header/base/dark.scss";
+// }
+
+// Header Menu themes
+// .header-menu-light {
+//     @import "./assets/sass/themes/layout/header/menu/light.scss";
+// }
+// .header-menu-dark {
+//     @import "./assets/sass/themes/layout/header/menu/dark.scss";
+// }
+
+// Brand themes
+.brand-dark {
+  @import "./assets/sass/themes/layout/brand/dark.scss";
+}
+
+.brand-light {
+  @import "./assets/sass/themes/layout/brand/light.scss";
+}
+
+// Aside themes
+// .aside-dark {
+//   @import "./assets/sass/themes/layout/aside/dark.scss";
+// }
+
+// .aside-light {
+//   @import "./assets/sass/themes/layout/aside/light.scss";
+// }
+
+//import intl-tel-input css and png files
+@import './assets/plugins/intl-tel-input/intlTelInput.css';
+.iti__flag {background-image: url("./assets/plugins/intl-tel-input/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {background-image: url("./assets/plugins/intl-tel-input/flags@2x.png");}
+}
+
+.iti{
+  width: 100%;
+}
+span.svg-icon {
+    pointer-events: none !important;
+}
+// hide bootstrap dropdown arrow globally
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.angular-bootstrap-table {
+  overflow-x: auto;
+}
+.angular-bootstrap-table {
+  th {
+    outline: none;
+
+    &.sortable {
+      .svg-icon-sort {
+        opacity: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        .svg-icon-sort {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .table.table-head-custom thead th.sortable-active {
+    color: $primary !important;
+  }
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.progress-modal {
+  height: 3px;
+  width: 100%;
+}
+
+.desc-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+.cdk-overlay-container{
+  z-index:1050; //lower then fixed header z-index so it goes behind it
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#splash-screen {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f2f3f8;
+}
+
+#splash-screen img {
+  margin-left: calc(100vw - 100%);
+  margin-bottom: 30px;
+}
+
+#splash-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-spinner {
+  animation: rotate 2s linear infinite;
+  margin-left: calc(100vw - 100%);
+  width: 50px;
+  height: 50px;
+}
+
+.splash-spinner .path {
+  stroke: #5d78ff;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0;}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(0,0,0,.12) !important;
+}
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
+.table-text-value{
+    text-overflow: ellipsis;
+    display: inline-block; 
+    width: 500px;
+    white-space: nowrap;
+    overflow: hidden !important;
+}
+.symbol-label {
+  background-position: inherit !important;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";

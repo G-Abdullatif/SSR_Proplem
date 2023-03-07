@@ -1,0 +1,102 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header">
+      <div class="card-title">
+        <h3 class="card-label">{{"Languages" | translate}}</h3>
+      </div>
+      <div class="card-toolbar d-flex">
+        <button type="button" class="btn btn-primary" (click)="create()">{{"Add" | translate}}</button>
+      </div>
+    </div>
+    <div class="card-body">
+    <!-- begin: Filtration form -->
+    <div class="form form-label-right">
+      <div class="form-group row">
+        <div class="col-lg-2" [formGroup]="searchGroup">
+          <input type="text"
+            class="form-control" 
+            name="searchText" 
+            [placeholder]="'Search' | translate"
+            formControlName="searchText"
+          />
+
+        </div>                
+      </div>
+    </div>
+    <!-- end: Filtration form -->
+      <!-- begin:Table -->
+      <div class="table-responsive angular-bootstrap-table">
+          <table class="table table-head-custom table-vertical-center overflow-hidden">
+              <thead>
+              <th>
+                  <app-sort-icon column="Id" [activeColumn]="sorting.column" [activeDirection]="sorting.direction"
+                                 (sort)="sort($event)"></app-sort-icon>
+              </th>
+              <th>
+                  {{"Name" | translate}}
+                  <app-sort-icon column="Name" [activeColumn]="sorting.column" [activeDirection]="sorting.direction"
+                                 (sort)="sort($event)"></app-sort-icon>
+              </th>
+              <th>{{"Active" | translate}}</th>
+              <th>{{"Default" | translate}}</th>
+              <th></th>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let language of languagesService.languages; let i = index">
+                      <td>{{ language?.id }}</td>
+                      <td>{{ language?.name}}</td>
+                      <td>
+                          <span class="switch switch-icon">
+                              <label>
+                                  <input class="form-control form-control-lg form-control-solid"
+                                         type="checkbox"
+                                         name="isActive"
+                                         [checked]="language?.isActive"
+                                         name="builder[header][self][fixed][desktop]"
+                                         [disabled]="language.id == languageObj.id || language.isDefault == true"
+                                         [attr.value]="language?.isActive"
+                                         (change)="onActiveClicked(language)" />
+                                  <span></span>
+                              </label>
+                          </span>
+                      </td>
+                      <td>
+                          <span class="switch switch-icon">
+                              <label>
+                                  <input class="form-control form-control-lg form-control-solid"
+                                         type="checkbox"
+                                         name="isDefault"
+                                         [checked]="language.isDefault"
+                                         [disabled]="language.isDefault == true || language.isActive == false"
+                                         name="builder[header][self][fixed][desktop]"
+                                         [attr.value]="language.isDefault"
+                                         [(ngModel)]="language.isDefault"
+                                         (change)="onDefaultClicked(language)" />
+                                  <span></span>
+                              </label>
+                          </span>
+                      </td>
+                      <td>
+                          <!-- edit -->
+                          <a [title]="'Edit'|translate" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" (click)="edit(language?.id)">
+                              <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" cacheSVG="true"
+                                    class="svg-icon svg-icon-md svg-icon-primary">
+                              </span>
+                          </a>
+                          <!-- delete -->
+                          <!-- <a title="Delete customer" class="btn btn-icon btn-light btn-hover-danger btn-sm">
+                  <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'" cacheSVG="true"
+                    class="svg-icon svg-icon-md svg-icon-danger">
+                  </span>
+                </a> -->
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <!-- end: Table -->
+      <app-paginator class="d-flex justify-content-between align-items-center flex-wrap"
+      [paginator]="paginator"
+      [isLoading]="isLoading" (paginate)="paginate($event)"
+    ></app-paginator>
+    </div>
+  </div>
